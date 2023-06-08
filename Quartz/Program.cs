@@ -33,10 +33,11 @@ namespace Quartz
             var trigger = TriggerBuilder.Create()
                 .WithIdentity("myTrigger", "group1")
                 .StartNow()
-                .WithSchedule(CronScheduleBuilder.DailyAtHourAndMinute(16, 13))
-                .WithSimpleSchedule(x => x
-                    .WithIntervalInSeconds(5)
-                    .RepeatForever())
+                .WithCronSchedule("0/1 40 16 ? * * *")
+                //.WithSchedule(CronScheduleBuilder.DailyAtHourAndMinute(16, 13))
+                //.WithSimpleSchedule(x => x
+                //    .WithIntervalInSeconds(5)
+                //    .RepeatForever())
                 .Build();
 
             await scheduler.ScheduleJob(job, trigger);
